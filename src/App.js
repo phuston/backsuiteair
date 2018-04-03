@@ -14,6 +14,7 @@ class App extends Component {
         </div>
         <TicketForm />
         <div className="App-footer">
+          <p className="footer-text">Copyright 2018 Backsuite Airlines. Additional services for those who need them may be requested. Backsuite air is not liable for delays in flight. Be prepared for a security screening at the door. Don't pregame you crazy kid</p>
         </div>
       </div>
     );

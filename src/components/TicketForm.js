@@ -18,16 +18,16 @@ class Ticket extends Component {
       email: '',
       seating: null
     }
-  }
-  componentDidMount() {
-    // To disabled submit button at the beginning.
     this.props.form.validateFields();
   }
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        // TODO:
+        // @PATRICK --> MAKE API CALL HERE 
       }
     });
   }
@@ -153,7 +153,8 @@ class Ticket extends Component {
           <FormItem>
           <h1>Confirmation</h1>
           <div className="pricing">
-            <h2>Please Venmo @BrettAtkinson <span className="price">{price}</span> now OR pay cash at the door. Payment will be required to validate tickets. Your tickets will be emailed to you. </h2>
+            {/* TODO --> WHO IS BUYING AND NEEDS TO BE REPAID? */}
+            <h2>Please <strong>Venmo @BrettAtkinson <span className="price">{price}</span> </strong>now OR pay cash at the door. Payment will be required to validate tickets. Your tickets will be emailed to you. </h2>
           </div>
           </FormItem>
           <FormItem>
