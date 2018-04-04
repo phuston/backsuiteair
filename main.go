@@ -17,8 +17,8 @@ type ticket_req struct {
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/ticket", TicketHandler)
-	r.Handle("/", http.FileServer(http.Dir("./frontend/build")))
-	r.Handle("/{jsFile:[a-z]+.js}", http.FileServer(http.Dir("./frontend/build/static/js")))
+	r.Handle("/", http.FileServer(http.Dir("./frontend/public")))
+	r.Handle("/{jsFile:[a-z]+.js}", http.FileServer(http.Dir("./frontend/public")))
 	http.Handle("/", r)
 	log.Fatal(http.ListenAndServe("localhost:8080", r))
 }
