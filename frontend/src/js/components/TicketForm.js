@@ -26,7 +26,7 @@ class Ticket extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        fetch('http://localhost:8080/ticket', {
+        fetch('http://18.219.112.146/ticket', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -35,7 +35,7 @@ class Ticket extends Component {
           body: JSON.stringify({
             Name: values.name,
             EmailAddress: values.email,
-            Class: values.seating
+            TicketClass: values.seating
           })
         })
       }

@@ -27,23 +27,16 @@ import (
 	"net/mail"
 )
 
-type EmailUser struct {
-	Username    string
-	Password    string
-	EmailServer string
-	Port        int
-}
-
 type ticket_req struct {
 	Name         string
-	TicketClass  int
+	TicketClass  string
 	EmailAddress string
 }
 
 var db *sql.DB
 
-var priceMap = map[string]int{"1": 3, "2": 5, "3": 10}
-var boardMap = map[string]string{"1": "C", "2": "B", "3": "A"}
+var priceMap = map[string]int{"0": 3, "1": 5, "2": 10}
+var boardMap = map[string]string{"0": "C", "1": "B", "2": "A"}
 
 func main() {
 	// Setup Unidoc
@@ -169,13 +162,13 @@ func CreatePdf(ticket *ticket_req) (string, error) {
 	_ = c.Draw(p)
 
 	// Ticket Price
-	ticketPrice := priceMap[strconv.Itoa(ticket.TicketClass)]
+	ticketPrice := priceMap[ticket.TicketClass]
 	p = creator.NewParagraph(fmt.Sprintf("$%d.00 USD", ticketPrice))
 	p.SetPos(classxPos, classyPos)
 	_ = c.Draw(p)
 
 	// Boarding group
-	boardGroup := boardMap[strconv.Itoa(ticket.TicketClass)]
+	boardGroup := boardMap[ticket.TicketClass]
 	p = creator.NewParagraph(boardGroup)
 	p.SetFontSize(70)
 	p.SetPos(groupxPos, groupyPos)
@@ -195,7 +188,9 @@ func insertTicket(ticket *ticket_req) {
 		fmt.Println(err)
 	}
 
-	_, err = stmtIns.Exec(ticket.EmailAddress, ticket.Name, ticket.TicketClass)
+	ticketClass ,err := strconv.Atoi(ticket.TicketClass)
+
+	_, err = stmtIns.Exec(ticket.EmailAddress, ticket.Name, ticketClass)
 
 	if err != nil {
 		panic(err)
