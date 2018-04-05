@@ -26,7 +26,7 @@ class Ticket extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        fetch('http://backsuiteair.ml/ticket', {
+        fetch('http://localhost:8080/ticket', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -38,7 +38,8 @@ class Ticket extends Component {
             TicketClass: values.seating
           })
         })
-        window.location = "https://media2.giphy.com/media/12Up26fqbaU45W/giphy.gif"
+          alert("Purchase complete. Check your email for your boarding pass")
+          window.location.reload();
       }
     });
   }
