@@ -8,6 +8,7 @@
 
 # production
 /frontend/build
+/frontend/public
 
 # misc
 .DS_Store
@@ -19,3 +20,9 @@
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*
+
+# env
+.env
+.idea
+tickets/
+
