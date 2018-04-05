@@ -26,7 +26,7 @@ class Ticket extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        fetch('http://18.219.112.146/ticket', {
+        fetch('http://backsuiteair.ml/ticket', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
