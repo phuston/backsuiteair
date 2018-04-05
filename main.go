@@ -83,7 +83,7 @@ func TicketHandler(w http.ResponseWriter, r *http.Request) {
 
 func CreatePdf(ticket *ticket_req) (string, error) {
 	codeStr := genEanNumber()
-	outFile := fmt.Sprintf("./tickets/%s.pdf", codeStr)
+	outFile := fmt.Sprintf("./tickets/boarding_pass_%s.pdf", codeStr)
 
 	fmt.Printf("COdestring %s \n ", codeStr)
 
@@ -214,10 +214,21 @@ func makeBarcode(codeStr string, width float64, oversampling int) (goimage.Image
 }
 
 func sendTicket(ticketPath string, ticket *ticket_req) {
-	msgBody := `Thank you for choosing Backsuiteair!
-Your boarding pass is attached. Don't be late!`
-	m := email.NewMessage("Your upcoming flight on Backsuiteair", msgBody)
-	m.From = mail.Address{Name: "From", Address: os.Getenv("GMAIL_ADDRESS")}
+	msgBody := `Thank you for choosing Backsuite Airlines!
+
+Your boarding pass is attached. Please print your boarding pass and bring it to the gate for entry.
+
+Guests without a valid boarding pass will not fly.
+
+At Backsuite Air, we pride ourselves in the highest quality customer service.
+
+Please contact keenan.zucker@students.olin.edu with any complaints, comments, or suggestions.
+
+Thank you for flying Backsuite Airlines, and have a safe trip!
+
+The Backsuite Crew`
+	m := email.NewMessage("Your upcoming flight on Backsuite Airlines", msgBody)
+	m.From = mail.Address{Name: "Backsuite Airlines Ticketing", Address: os.Getenv("GMAIL_ADDRESS")}
 	m.To = []string{ticket.EmailAddress}
 
 	// add attachments
