@@ -67,6 +67,8 @@ func TicketHandler(w http.ResponseWriter, r *http.Request) {
 	var ticket ticket_req
 	err := decoder.Decode(&ticket)
 
+	fmt.Printf("Name: %s   Email: %s   Type: %s \n", ticket.Name, ticket.EmailAddress, ticket.TicketClass)
+
 	if err != nil {
 		panic(err)
 	}
@@ -84,8 +86,6 @@ func TicketHandler(w http.ResponseWriter, r *http.Request) {
 func CreatePdf(ticket *ticket_req) (string, error) {
 	codeStr := genEanNumber()
 	outFile := fmt.Sprintf("./tickets/boarding_pass_%s.pdf", codeStr)
-
-	fmt.Printf("COdestring %s \n ", codeStr)
 
 	width := 100.00
 	bCodexPos := 460.0
