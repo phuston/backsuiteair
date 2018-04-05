@@ -220,6 +220,8 @@ Your boarding pass is attached. Please print your boarding pass and bring it to 
 
 Guests without a valid boarding pass will not fly.
 
+Please pay via Venmo (@BrettAtkinson) or with cash at the gate.
+
 At Backsuite Air, we pride ourselves in the highest quality customer service.
 
 Please contact keenan.zucker@students.olin.edu with any complaints, comments, or suggestions.

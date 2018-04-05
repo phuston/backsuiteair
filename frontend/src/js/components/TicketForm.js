@@ -38,6 +38,7 @@ class Ticket extends Component {
             TicketClass: values.seating
           })
         })
+        window.location = "https://media2.giphy.com/media/12Up26fqbaU45W/giphy.gif"
       }
     });
   }
