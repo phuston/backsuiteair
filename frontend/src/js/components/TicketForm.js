@@ -26,8 +26,18 @@ class Ticket extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        // TODO:
-        // @PATRICK --> MAKE API CALL HERE 
+        fetch('http://localhost:8080/ticket', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            Name: this.state.name,
+            EmailAddress: this.state.email,
+            Class: this.state.seating
+          })
+        })
       }
     });
   }
