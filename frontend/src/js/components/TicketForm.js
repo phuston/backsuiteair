@@ -33,9 +33,9 @@ class Ticket extends Component {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            Name: this.state.name,
-            EmailAddress: this.state.email,
-            Class: this.state.seating
+            Name: values.name,
+            EmailAddress: values.email,
+            Class: values.seating
           })
         })
       }

@@ -47,7 +47,6 @@ var boardMap = map[string]string{"1": "C", "2": "B", "3": "A"}
 
 func main() {
 	// Setup Unidoc
-	fmt.Println(os.Getenv("UNIDOC_LICENSE"))
 	unidocLicenseKey := os.Getenv("UNIDOC_LICENSE")
 	err := unilicense.SetLicenseKey(unidocLicenseKey)
 
@@ -70,7 +69,7 @@ func main() {
 }
 
 func TicketHandler(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
+	w.WriteHeader(http.StatusPermanentRedirect)
 	decoder := json.NewDecoder(r.Body)
 	var ticket ticket_req
 	err := decoder.Decode(&ticket)
@@ -79,7 +78,6 @@ func TicketHandler(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	fmt.Printf("Name: %s | Class: %d | Email: %s \n", ticket.Name, ticket.TicketClass, ticket.EmailAddress)
 	insertTicket(&ticket)
 	ticketPath, err := CreatePdf(&ticket)
 	if err != nil {
